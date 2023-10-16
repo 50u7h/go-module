@@ -1,6 +1,7 @@
 package main
 
 import (
+	toolkit "github.com/50u7h/go-module"
 	"log"
 	"net/http"
 )
@@ -36,15 +37,12 @@ func main() {
 }
 
 func receivePost(w http.ResponseWriter, r *http.Request) {
-	/*var requestPayload RequestPayload
+	var requestPayload RequestPayload
 	var t toolkit.Tools
 
 	err := t.ReadJSON(w, r, &requestPayload)
 	if err != nil {
-		err := t.ErrorJSON(w, err)
-		if err != nil {
-			return
-		}
+		t.ErrorJSON(w, err)
 		return
 	}
 
@@ -55,7 +53,7 @@ func receivePost(w http.ResponseWriter, r *http.Request) {
 	err = t.WriteJSON(w, http.StatusAccepted, responsePayload)
 	if err != nil {
 		log.Println(err)
-	}*/
+	}
 }
 
 func remoteService(w http.ResponseWriter, r *http.Request) {
@@ -64,20 +62,14 @@ func remoteService(w http.ResponseWriter, r *http.Request) {
 
 	err := t.ReadJSON(w, r, &requestPayload)
 	if err != nil {
-		err := t.ErrorJSON(w, err)
-		if err != nil {
-			return
-		}
+		t.ErrorJSON(w, err)
 		return
 	}
 
 	// call a remote service
 	_, statusCode, err := t.PushJSONToRemote("http://localhost:8081/simulated-service", requestPayload)
 	if err != nil {
-		err := t.ErrorJSON(w, err)
-		if err != nil {
-			return
-		}
+		t.ErrorJSON(w, err)
 		return
 	}
 
@@ -100,4 +92,5 @@ func simulatedService(w http.ResponseWriter, r *http.Request) {
 
 	var t toolkit.Tools
 	_ = t.WriteJSON(w, http.StatusOK, payload)
-}*/
+}
+*/
