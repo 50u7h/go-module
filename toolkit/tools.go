@@ -15,7 +15,7 @@ import (
 const randomStringSource = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_+"
 
 // Tools is the type used to instantiate this module. Any variable of this type will have access
-// to all the methods with the receiver *Tools
+// to all the methods with the reciever *Tools
 type Tools struct {
 	MaxFileSize      int
 	AllowedFileTypes []string
@@ -40,10 +40,6 @@ type UploadedFile struct {
 	FileSize         int64
 }
 
-// UploadFiles uploads one or more file to a specified directory, and gives the files a random name.
-// It returns a slice containing the newly named files, the original file names, the size of the files,
-// and potentially an error. If the optional last parameter is set to true, then we will not rename
-// the files, but will use the original file names.
 func (t *Tools) UploadFiles(r *http.Request, uploadDir string, rename ...bool) ([]*UploadedFile, error) {
 	renameFile := true
 	if len(rename) > 0 {
@@ -85,7 +81,6 @@ func (t *Tools) UploadFiles(r *http.Request, uploadDir string, rename ...bool) (
 				// check to see if the file type is permitted
 				allowed := false
 				fileType := http.DetectContentType(buff)
-				//allowedTypes := []string{"image/jpeg", "image/png", "image/gif", "image/jpg"}
 
 				if len(t.AllowedFileTypes) > 0 {
 					for _, x := range t.AllowedFileTypes {
